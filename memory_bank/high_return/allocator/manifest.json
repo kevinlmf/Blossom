@@ -1,0 +1,95 @@
+{
+  "versions": [
+    {
+      "version": 2,
+      "case_id": "high_return_allocator_20251105_143100",
+      "timestamp": "2025-11-05T14:31:00.276256",
+      "sharpe": 6.856164025360631,
+      "total_return": 317.9803860680189,
+      "max_drawdown": -4.3852689055777025,
+      "win_rate": 0.672209026128266
+    },
+    {
+      "version": 7,
+      "case_id": "high_return_allocator_20251105_143749",
+      "timestamp": "2025-11-05T14:37:49.410024",
+      "sharpe": 7.156830389247313,
+      "total_return": 334.483969253909,
+      "max_drawdown": -4.785215759059588,
+      "win_rate": 0.672209026128266
+    },
+    {
+      "version": 8,
+      "case_id": "high_return_allocator_20251105_143907",
+      "timestamp": "2025-11-05T14:39:07.841500",
+      "sharpe": 6.683963528953981,
+      "total_return": 320.26155459071185,
+      "max_drawdown": -4.1261668819451955,
+      "win_rate": 0.6532066508313539
+    },
+    {
+      "version": 11,
+      "case_id": "high_return_allocator_20251116_112540",
+      "timestamp": "2025-11-16T11:25:40.699386",
+      "sharpe": 6.578828689898888,
+      "total_return": 280.2398602032495,
+      "max_drawdown": -3.7944053348777347,
+      "win_rate": 0.66270783847981
+    },
+    {
+      "version": 11,
+      "case_id": "high_return_allocator_20251116_112845",
+      "timestamp": "2025-11-16T11:28:45.137308",
+      "sharpe": 6.6328893150546335,
+      "total_return": 290.9286644710516,
+      "max_drawdown": -3.4939128648047935,
+      "win_rate": 0.669833729216152
+    },
+    {
+      "version": 11,
+      "case_id": "high_return_allocator_20251116_120516",
+      "timestamp": "2025-11-16T12:05:16.701282",
+      "sharpe": 6.194528320467452,
+      "total_return": 261.8704994223549,
+      "max_drawdown": -3.239107001728652,
+      "win_rate": 0.6484560570071259
+    },
+    {
+      "version": 11,
+      "case_id": "high_return_allocator_20251116_120639",
+      "timestamp": "2025-11-16T12:06:39.413037",
+      "sharpe": 6.353627691362749,
+      "total_return": 280.8631803093034,
+      "max_drawdown": -3.2742972784960385,
+      "win_rate": 0.6603325415676959
+    },
+    {
+      "version": 11,
+      "case_id": "high_return_allocator_20251116_120823",
+      "timestamp": "2025-11-16T12:08:23.040124",
+      "sharpe": 6.157665881180963,
+      "total_return": 279.83124051428064,
+      "max_drawdown": -3.83310748169668,
+      "win_rate": 0.6579572446555819
+    },
+    {
+      "version": 11,
+      "case_id": "high_return_allocator_20251116_121004",
+      "timestamp": "2025-11-16T12:10:04.358547",
+      "sharpe": 6.392998829275142,
+      "total_return": 305.5478913514864,
+      "max_drawdown": -3.387287444115244,
+      "win_rate": 0.667458432304038
+    },
+    {
+      "version": 11,
+      "case_id": "high_return_allocator_20251213_123749",
+      "timestamp": "2025-12-13T12:37:49.287224",
+      "sharpe": 5.9969856151455545,
+      "total_return": 276.69988351449655,
+      "max_drawdown": -4.046171139030564,
+      "win_rate": 0.6460807600950119
+    }
+  ],
+  "active": "high_return_allocator_20251213_123749"
+}

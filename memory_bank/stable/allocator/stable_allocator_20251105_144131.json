@@ -1,0 +1,16 @@
+{
+  "case_id": "stable_allocator_20251105_144131",
+  "regime_type": "stable",
+  "agent_type": "allocator",
+  "strategy_params": "<saved in .pkl file>",
+  "sharpe_ratio": 4.046002801673528,
+  "total_return": 51.45539638816983,
+  "max_drawdown": -3.2291979679908196,
+  "win_rate": 0.5617529880478087,
+  "market_volatility": 0.12495484180152758,
+  "market_trend": 0.0010294934272351718,
+  "market_correlation": 0.5,
+  "training_episodes": 500,
+  "timestamp": "2025-11-05T14:41:31.369735",
+  "success_score": 1.6621981106444006
+}

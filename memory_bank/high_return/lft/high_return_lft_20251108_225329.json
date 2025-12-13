@@ -1,0 +1,16 @@
+{
+  "case_id": "high_return_lft_20251108_225329",
+  "regime_type": "high_return",
+  "agent_type": "lft",
+  "strategy_params": "<saved in .pkl file>",
+  "sharpe_ratio": 3.0299469986396494,
+  "total_return": 96.3239171970546,
+  "max_drawdown": -5.878845480861522,
+  "win_rate": 0.5510688836104513,
+  "market_volatility": 0.15723075723797608,
+  "market_trend": 0.00129685539390861,
+  "market_correlation": 0.5,
+  "training_episodes": 1000,
+  "timestamp": "2025-11-08T22:53:29.938035",
+  "success_score": 1.1232797796829619
+}

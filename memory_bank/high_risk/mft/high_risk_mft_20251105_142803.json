@@ -1,0 +1,16 @@
+{
+  "case_id": "high_risk_mft_20251105_142803",
+  "regime_type": "high_risk",
+  "agent_type": "mft",
+  "strategy_params": "<saved in .pkl file>",
+  "sharpe_ratio": -0.5157125995456212,
+  "total_return": -6.791468073722573,
+  "max_drawdown": -29.545108499555113,
+  "win_rate": 0.45901639344262296,
+  "market_volatility": 0.6217864597503604,
+  "market_trend": -0.0008931868888388377,
+  "market_correlation": 0.5,
+  "training_episodes": 500,
+  "timestamp": "2025-11-05T14:28:03.330094",
+  "success_score": -2.989367015306403
+}

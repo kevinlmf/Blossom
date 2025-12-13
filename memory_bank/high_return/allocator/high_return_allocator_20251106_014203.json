@@ -1,0 +1,16 @@
+{
+  "case_id": "high_return_allocator_20251106_014203",
+  "regime_type": "high_return",
+  "agent_type": "allocator",
+  "strategy_params": "<saved in .pkl file>",
+  "sharpe_ratio": 4.714581474070497,
+  "total_return": 166.30548990450757,
+  "max_drawdown": -7.362414768066845,
+  "win_rate": 0.6175771971496437,
+  "market_volatility": 0.15723075723797608,
+  "market_trend": 0.00129685539390861,
+  "market_correlation": 0.5,
+  "training_episodes": 500,
+  "timestamp": "2025-11-06T01:42:03.119319",
+  "success_score": 1.8720230219649663
+}

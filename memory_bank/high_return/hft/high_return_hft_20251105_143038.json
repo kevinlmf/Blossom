@@ -1,0 +1,16 @@
+{
+  "case_id": "high_return_hft_20251105_143038",
+  "regime_type": "high_return",
+  "agent_type": "hft",
+  "strategy_params": "<saved in .pkl file>",
+  "sharpe_ratio": 3.998045362508812,
+  "total_return": 127.90581992178454,
+  "max_drawdown": -4.857609746219709,
+  "win_rate": 0.5985748218527316,
+  "market_volatility": 0.15723075723797608,
+  "market_trend": 0.00129685539390861,
+  "market_correlation": 0.5,
+  "training_episodes": 500,
+  "timestamp": "2025-11-05T14:30:38.885781",
+  "success_score": 1.716889594517454
+}

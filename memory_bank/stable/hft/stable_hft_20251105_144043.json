@@ -1,0 +1,16 @@
+{
+  "case_id": "stable_hft_20251105_144043",
+  "regime_type": "stable",
+  "agent_type": "hft",
+  "strategy_params": "<saved in .pkl file>",
+  "sharpe_ratio": 2.0207139019316824,
+  "total_return": 26.063682912490993,
+  "max_drawdown": -4.466904110577287,
+  "win_rate": 0.5418326693227091,
+  "market_volatility": 0.12495484180152758,
+  "market_trend": 0.0010294934272351718,
+  "market_correlation": 0.5,
+  "training_episodes": 500,
+  "timestamp": "2025-11-05T14:40:43.248857",
+  "success_score": 0.6481527323169591
+}

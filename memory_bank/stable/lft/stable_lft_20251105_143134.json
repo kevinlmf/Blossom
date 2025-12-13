@@ -1,0 +1,16 @@
+{
+  "case_id": "stable_lft_20251105_143134",
+  "regime_type": "stable",
+  "agent_type": "lft",
+  "strategy_params": "<saved in .pkl file>",
+  "sharpe_ratio": 5.1381118103112176,
+  "total_return": 67.9979029511394,
+  "max_drawdown": -2.1666705692027173,
+  "win_rate": 0.6175298804780877,
+  "market_volatility": 0.12495484180152758,
+  "market_trend": 0.0010294934272351718,
+  "market_correlation": 0.5,
+  "training_episodes": 500,
+  "timestamp": "2025-11-05T14:31:34.821722",
+  "success_score": 2.266077352153251
+}

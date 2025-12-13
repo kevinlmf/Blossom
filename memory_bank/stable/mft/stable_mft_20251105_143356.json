@@ -1,0 +1,16 @@
+{
+  "case_id": "stable_mft_20251105_143356",
+  "regime_type": "stable",
+  "agent_type": "mft",
+  "strategy_params": "<saved in .pkl file>",
+  "sharpe_ratio": 4.744418679426646,
+  "total_return": 60.437369903811636,
+  "max_drawdown": -3.5338928454144187,
+  "win_rate": 0.6374501992031872,
+  "market_volatility": 0.12495484180152758,
+  "market_trend": 0.0010294934272351718,
+  "market_correlation": 0.5,
+  "training_episodes": 500,
+  "timestamp": "2025-11-05T14:33:56.873234",
+  "success_score": 1.9531803367812888
+}

@@ -1,0 +1,29 @@
+name: balanced_growth
+owner: demo_user
+description: Balanced risk-adjusted growth with low latency execution.
+
+utility_weights:
+  return_weight: 0.35
+  risk_weight: 0.25
+  latency_weight: 0.15
+  capital_efficiency_weight: 0.15
+  style_alignment_weight: 0.10
+
+constraints:
+  max_drawdown: -0.20
+  max_cvar_95: 0.25
+  capital_limit: 1000000
+  latency_limit_ms: 8
+  turnover_limit: 0.30
+
+style:
+  execution_style: balanced
+  risk_appetite: balanced
+  preferred_instruments:
+    - large_cap_equities
+    - index_futures
+  disallowed_instruments:
+    - illiquid_microcap
+  thematic_focus: sustainable_growth
+  comments: Maintain offensive posture when risk is controlled.
+
