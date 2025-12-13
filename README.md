@@ -240,4 +240,4 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 ---
 
-Name it “Blossom,” hoping our life can bloom like flowers, also we can go for a walk in nature to find beautiful flowers.
+Name it “Blossom,” hoping our life can bloom like flowers across all frequencies, and that we can go for a walk in nature to find beautiful flowers in all regimes.
