@@ -13,22 +13,43 @@
 - **AI/ML Engineering**: Multi-agent RL (PPO, SAC), deep learning (JAX/Flax), adaptive learning
 - **Research Innovation**: Goal-oriented planning, case-based reasoning (CBR), regime-adaptive systems
 
-## Quick Start
+## Installation
 
 ```bash
-# Interactive menu
+# Clone the repository
+git clone https://github.com/kevinlmf/Blossom
+cd Blossom
+
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+---
+### Interactive Menu
+Launch the interactive interface:
+```bash
 bash run.sh
+```
 
-# Auto-detect market regime and train
+### Auto-Detect Market Regime and Train
+Automatically detect the market regime and train agents:
+```bash
 python train.py --mode auto --episodes 500
+```
 
-# Train with specific goal configuration
+### Train with a Specific Goal Configuration
+Train across all regimes with a predefined goal setup:
+```bash
 python train.py --mode all_regimes \
   --goal-config configs/goals/balanced_growth.yaml \
   --episodes 300
 ```
 
-**Dependencies**: See `requirements.txt`. Default uses CPU JAX; GPU support available.
+
 
 ## System Architecture
 
@@ -88,7 +109,7 @@ python train.py --mode all_regimes \
 
 ## Key Features
 
-### 1. Stock Selection (选股模块) 🆕
+### 1. Stock Selection
 - **Technical Analysis**: Multi-factor technical scoring (momentum, trend, mean reversion, volatility, volume)
 - **Fundamental Analysis**: Valuation, profitability, growth, financial health, efficiency metrics
 - **Combined Selection**: Integrated technical + fundamental stock screening
@@ -100,13 +121,13 @@ python train.py --mode all_regimes \
 - **LFT Agent**: Portfolio-level asset allocation (portfolio weights)
 - **Action Composition**: `π*(t) = α_H·π_H*(t) + α_M·π_M*(t) + α_L·π_L*(t)`
 
-### 3. Hedging Tools (对冲工具) 🆕
+### 3. Hedging Tools
 - **Market Neutral Strategy**: Convert excess returns to absolute returns
 - **Dynamic Delta Hedging**: Adaptive hedging based on market volatility
 - **Beta Hedging**: Beta-based market risk neutralization
 - **Multiple Strategies**: Pair trading, index hedging support
 
-### 4. Market Regime Detection 🆕
+### 4. Market Regime Detection
 - **Rule-Based Method**: Fast, interpretable threshold-based classification
 - **HMM Method**: Hidden Markov Model with state transition probabilities and prediction capability
 - **Regime Types**: High Risk, High Return, Stable periods
@@ -137,15 +158,15 @@ python train.py --mode all_regimes \
 
 **Correct execution order**:
 ```
-1. Stock Selection (筛选股票池)
+1. Stock Selection
    ↓
-2. Agents Work Independently (HFT/MFT/LFT生成动作)
+2. Agents Work Independently
    ↓
-3. Allocator (资本分配)
+3. Allocator
    ↓
-4. Risk Control (风险调整)
+4. Risk Control
    ↓
-5. Hedge (对冲 - 最后一步，转换为绝对收益)
+5. Hedge
 ```
 
 ## Project Structure
@@ -157,81 +178,20 @@ Blossom/
 │   ├── hft_agent/      # High-frequency trading agent (SAC)
 │   ├── mft_agent/      # Medium-frequency trading agent (SAC)
 │   ├── lft_agent/      # Low-frequency trading agent (SAC)
-│   │   └── selection/  # Stock selection for LFT 🆕
+│   │   └── selection/  # Stock selection for LFT 
 │   ├── memory/         # Strategy memory bank (CBR)
 │   └── planner/        # Goal planner
-├── stock_selection/    # Stock selection module 🆕
-├── hedging/            # Hedging tools 🆕
+├── stock_selection/    # Stock selection module 
+├── hedging/            # Hedging tools 
 ├── experiments/        # Experiment runners and analysis
 │   ├── market_regime_detector.py  # Rule-based detection
-│   └── hmm_regime_detector.py     # HMM-based detection 🆕
+│   └── hmm_regime_detector.py     # HMM-based detection 
 ├── shared_encoder/     # Shared encoder (Transformer/LSTM/EM)
 ├── risk_controller/    # Risk control (CVaR, Max Drawdown)
 ├── goal/               # Goal-oriented planning
 ├── evaluation/         # Performance evaluation and validation
 └── docs/               # Documentation
 ```
-
-## Market Regime Detection
-
-### Rule-Based Method (Current)
-- **Method**: Threshold-based classification using volatility, returns, drawdown
-- **Pros**: Fast, interpretable, no training needed
-- **Use Case**: Real-time detection, quick analysis
-
-### HMM Method (New) 🆕
-- **Method**: Hidden Markov Model with state transition probabilities
-- **Pros**: More accurate, can predict future regimes, learns from data
-- **Use Case**: Precise detection, regime prediction
-
-```python
-from experiments import HMMRegimeDetector
-
-hmm_detector = HMMRegimeDetector(n_states=3, learn_params=True)
-hmm_detector.fit(prices, dates)
-periods = hmm_detector.detect_specific_periods(prices, dates)
-
-# Predict future regime
-future_probs = hmm_detector.predict_next_regime(prices, n_steps=5)
-```
-
-## Usage Examples
-
-### Stock Selection
-```python
-from stock_selection import StockSelector
-
-selector = StockSelector(technical_weight=0.5, fundamental_weight=0.5, top_k=10)
-selected = selector.select_stocks(stock_data, symbols)
-```
-
-### Hedging
-```python
-from hedging import HedgeManager, HedgeStrategy
-
-hedge_manager = HedgeManager(strategy=HedgeStrategy.MARKET_NEUTRAL)
-result = hedge_manager.hedge_portfolio(
-    excess_return=0.05, portfolio_value=100000, benchmark_return=0.10
-)
-absolute_return = result.absolute_return
-```
-
-### LFT with Stock Selection
-```python
-from agent.lft_agent import LFTStockSelector
-
-stock_selector = LFTStockSelector(top_k=10, rebalance_frequency=20)
-selected_symbols, scores = stock_selector.select_stocks_for_lft(
-    stock_data, symbols, current_step=0
-)
-```
-
-## Evaluation & Validation
-
-- **Performance Metrics**: Sharpe ratio, total return, max drawdown, win rate, CVaR
-- **Statistical Validation**: Multiple independent runs with significance testing
-- **Goal Audit**: Goal satisfaction tracking and reporting
-- **Regime Analysis**: Performance breakdown by market regime
 
 ## Experimental Results (30 Independent Runs)
 
@@ -258,13 +218,6 @@ Based on 30 independent experimental runs across three distinct market regimes:
 
 *Results based on 30 independent runs (500 episodes each) using predefined market periods (COVID-19 crash, post-COVID rally, pre-COVID stable market).*
 
-## Performance Optimizations
-
-Memory Bank Caching | Incremental Updates | Parallel Training | JAX JIT Compilation
-
-## Documentation
-
-See `docs/` directory for detailed documentation on workflow, market regime detection, HMM methods, EM training, and evaluation metrics.
 
 ## Research & Innovation
 
@@ -276,24 +229,15 @@ See `docs/` directory for detailed documentation on workflow, market regime dete
 - **Hedging**: Market-neutral strategies for absolute returns
 - **Latent Variable Learning**: EM algorithm for discovering factors explaining returns
 
-## Installation
+---
+## License
 
-```bash
-# Clone repository
-git clone https://github.com/kevinlmf/Blossom
-cd Blossom
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+## Disclaimer
 
-# Install dependencies
-pip install -r requirements.txt
-```
-
-
-
-
+⚠️ **Important**: This project is provided **for educational, academic research, and learning purposes only**. Commercial use is strictly prohibited. Please read the [DISCLAIMER.md](DISCLAIMER.md) file carefully before using this project.
 
 ---
-Name it “Blossom,” hoping our life can bloom like flowers, and that we can walk in nature to find their beauty.
+
+Name it “Blossom,” hoping our life can bloom like flowers, also we can walk in nature to find beautiful flowers.
