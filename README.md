@@ -102,7 +102,7 @@ python train.py --mode all_regimes \
       └──────────────┬──────────────┘
                      │
       ┌──────────────▼──────────────┐
-      │   Hedge Manager (最后一步)   │
+      │   Hedge Manager   │
       │   Excess → Absolute Return  │
       └──────────────────────────────┘
 ```
