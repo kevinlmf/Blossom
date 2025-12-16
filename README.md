@@ -55,56 +55,45 @@ python train.py --mode all_regimes \
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  Goal Layer                                                   │
-│  Input: U(return, risk, latency, capital, style)             │
-│  Output: Goal directive (allocations, risk budgets)          │
+│  Goal Layer (目标层)                                           │
+│  Input: U(return, risk, latency, capital)                    │
+│  Output: Goal Directive (R_min, RiskBudget, L_max)          │
 └────────────────────┬─────────────────────────────────────────┘
-                     │
+                     │
 ┌────────────────────▼─────────────────────────────────────────┐
-│  Goal Planner + Market Regime Detector                       │
-│  Rule-based / HMM-based detection                            │
-│  HIGH_RISK | HIGH_RETURN | STABLE                            │
+│  State Constructor (状态构建)                                   │
+│  Combines: Goal, Market Regime (HMM), Filtered Stocks,        │
+│            Memory (A_baseline*) - 所有决策输入整合            │
 └────────────────────┬─────────────────────────────────────────┘
-                     │
+                     │
 ┌────────────────────▼─────────────────────────────────────────┐
-│  Strategy Memory Bank (CBR)                                   │
-│  RETRIEVE → REUSE → REVISE → RETAIN                          │
+│  Hierarchical Strategy Generation (分层策略生成)                 │
+│  Allocator Agent (PPO) + HFT/MFT/LFT Agents (SAC)             │
+│  Output: Candidate Action A_t (候选行动: π, w, R)                       │
 └────────────────────┬─────────────────────────────────────────┘
-                     │
-┌────────────────────▼─────────────────────────────────────────┐
-│  Stock Selection (Technical + Fundamental)                  │
-│  Filters candidate stocks before portfolio construction       │
-└────────────────────┬─────────────────────────────────────────┘
-                     │
-┌────────────────────▼─────────────────────────────────────────┐
-│  Allocator Agent (Meta-Level PPO)                            │
-│  Output: [π_HFT, π_MFT, π_LFT]                               │
-└────────────────────┬─────────────────────────────────────────┘
-                     │
-      ┌──────────────┼──────────────┐
-      │              │              │
-┌─────▼─────┐  ┌─────▼─────┐  ┌────▼──────┐
-│ HFT Agent │  │ MFT Agent │  │ LFT Agent │
-│   (SAC)   │  │   (SAC)   │  │   (SAC)   │
-│  Tick     │  │ Hour/Day  │  │ Portfolio │
-└─────┬─────┘  └─────┬─────┘  └────┬──────┘
-      │              │              │
-      └──────────────┼──────────────┘
-                     │
-      ┌──────────────▼──────────────┐
-      │  Shared Encoder (Transformer)│
-      │  Latent Factors: z_t         │
-      └──────────────┬──────────────┘
-                     │
-      ┌──────────────▼──────────────┐
-      │   Risk Controller            │
-      │   CVaR, Max Drawdown, VaR   │
-      └──────────────┬──────────────┘
-                     │
-      ┌──────────────▼──────────────┐
-      │   Hedge Manager   │
-      │   Excess → Absolute Return  │
-      └──────────────────────────────┘
+                     │
+                     │    **(The Critical Gate - 核心决策门)**
+                     ▼
+┌──────────────────────────────────────────────────────────────┐
+│                **Action Validator Module (行动验证模块)**                    │
+│  1. Feasibility (可行性): E[R(A)] >= R_min? (目标一致性)         │
+│  2. Stability (稳定性): ΔQ_t > ε & Var(R) stable? (学习一致性) │
+│  3. Validity (有效性): Allocator smooth? ConflictRate low? (结构可解释性)│
+│  Output: Optimal(A_t) [BOOLEAN] - 是否批准执行                       │
+└──────────┬───────────────────┬───────────────────────────────┘
+           │ (Optimal Action A_t*)  │
+           ▼                     ▼
+┌──────────┴──────────┐  ┌───────────────┐
+│  Hedge Manager (对冲管理) │  │  Strategy Memory Bank (策略记忆库) │
+│  (Execute)           │  │  (Retain Approved A_t*) - 仅存储最优策略 │
+│  Risk Neutralization │  └───────────────┬───────────┘
+└──────────┬──────────┘                   │
+           │                              │
+           ▼                              ▼
+┌──────────────────────────────────────────────────────────────┐
+│  Actual Trading Signal & System State Update (S_{t+1})        │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ## Key Features
